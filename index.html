@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 <!DOCTYPE html>
 <html lang="ko">
 <head>
@@ -165,4 +166,172 @@
         }
     </script>
 </body>
+=======
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <title>동전 무게로 가격 계산하기</title>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body {
+            font-family: 'Noto Sans KR', sans-serif;
+            background-color: #f0f4f8;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            line-height: 1.6;
+        }
+        .container {
+            background-color: white;
+            border-radius: 15px;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+            width: 100%;
+            max-width: 400px;
+            padding: 30px;
+            text-align: center;
+        }
+        h1 {
+            color: #2c3e50;
+            margin-bottom: 20px;
+            font-size: 24px;
+        }
+        .input-group {
+            margin-bottom: 15px;
+            text-align: left;
+        }
+        label {
+            display: block;
+            margin-bottom: 5px;
+            color: #34495e;
+            font-weight: 500;
+        }
+        .label-info {
+            color: #888;
+            font-size: 14px;
+            margin-left: 10px;
+        }
+        select, input {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 6px;
+            font-size: 16px;
+        }
+        button {
+            width: 100%;
+            padding: 12px;
+            background-color: #3498db;
+            color: white;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 16px;
+            transition: background-color 0.3s ease;
+        }
+        button:hover {
+            background-color: #2980b9;
+        }
+        #result {
+            margin-top: 20px;
+            background-color: #f8f9fa;
+            padding: 15px;
+            border-radius: 8px;
+            text-align: left;
+        }
+        .result-item {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 5px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>💰 동전 무게로 가격 계산하기</h1>
+        
+        <div class="input-group">
+            <label for="coinType">동전 종류</label>
+            <select id="coinType">
+                <option value="500">500원</option>
+                <option value="100">100원</option>
+                <option value="50">50원</option>
+                <option value="10">10원</option>
+            </select>
+        </div>
+        
+        <div class="input-group">
+            <label for="totalWeight">
+                총 무게 (g)
+                <span class="label-info">1kg = 1000g</span>
+            </label>
+            <input type="number" id="totalWeight" placeholder="무게를 입력하세요" step="0.01">
+        </div>
+        
+        <button onclick="calculateCoins()">계산하기</button>
+        
+        <div id="result"></div>
+    </div>
+
+    <script>
+        const coinWeights = {
+            500: 7.7,
+            100: 5.42,
+            50: 4.16,
+            10: 1.22
+        };
+
+        function calculateCoins() {
+            const coinType = parseInt(document.getElementById('coinType').value);
+            const totalWeight = parseFloat(document.getElementById('totalWeight').value);
+            const resultDiv = document.getElementById('result');
+
+            if (isNaN(totalWeight) || totalWeight <= 0) {
+                resultDiv.innerHTML = '올바른 무게를 입력해주세요.';
+                return;
+            }
+
+            const coinWeight = coinWeights[coinType];
+            const coinCount = Math.floor(totalWeight / coinWeight);
+            const remainingWeight = totalWeight % coinWeight;
+            const totalPrice = coinCount * coinType;
+
+            let resultHTML = `
+                <div class="result-item">
+                    <span>동전 종류:</span>
+                    <strong>${coinType}원</strong>
+                </div>
+                <div class="result-item">
+                    <span>동전 무게:</span>
+                    <strong>${coinWeight.toFixed(2)}g/개</strong>
+                </div>
+                <div class="result-item">
+                    <span>동전 개수:</span>
+                    <strong>${coinCount}개</strong>
+                </div>
+                <div class="result-item">
+                    <span>총 동전 무게:</span>
+                    <strong>${(coinCount * coinWeight).toFixed(2)}g</strong>
+                </div>
+                <div class="result-item">
+                    <span>예상 가격:</span>
+                    <strong>${totalPrice.toLocaleString()}원</strong>
+                </div>
+                <div class="result-item">
+                    <span>남은 무게:</span>
+                    <strong>${remainingWeight.toFixed(2)}g</strong>
+                </div>
+            `;
+
+            resultDiv.innerHTML = resultHTML;
+        }
+    </script>
+</body>
+>>>>>>> c223586657d96a0783920e5aa54b301a67cb2be9
 </html>
