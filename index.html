@@ -3,7 +3,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>동전 무게로 가격 계산하기</title>
+    <meta name="description" content="동전의 무게를 입력하여 가격을 계산하는 기능을 제공합니다. 동전의 총액을 간단히 계산해보세요.">
+    <meta name="keywords" content="동전 무게 계산, 동전 가격 계산, 동전 계산기, 한국 동전, 동전 무게">
+    <title>동전 무게 계산기 | 한국 동전 무게로 가격 계산하기</title>
     <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;700&display=swap" rel="stylesheet">
     <style>
         * {
@@ -33,6 +35,11 @@
             color: #2c3e50;
             margin-bottom: 20px;
             font-size: 24px;
+        }
+        h2 {
+            color: #34495e;
+            margin-bottom: 15px;
+            font-size: 18px;
         }
         .input-group {
             margin-bottom: 15px;
@@ -86,27 +93,28 @@
 </head>
 <body>
     <div class="container">
-        <h1>💰 동전 무게로 가격 계산하기</h1>
+        <h1>💰 동전 무게 계산기</h1>
+        <h2>한국 동전 무게로 가격 계산하기</h2>
         
         <div class="input-group">
-            <label for="coinType">동전 종류</label>
+            <label for="coinType">동전 종류 선택</label>
             <select id="coinType">
-                <option value="500">500원</option>
-                <option value="100">100원</option>
-                <option value="50">50원</option>
-                <option value="10">10원</option>
+                <option value="500">500원 동전</option>
+                <option value="100">100원 동전</option>
+                <option value="50">50원 동전</option>
+                <option value="10">10원 동전</option>
             </select>
         </div>
         
         <div class="input-group">
             <label for="totalWeight">
-                총 무게 (g)
+                총 동전 무게 (g)
                 <span class="label-info">1kg = 1000g</span>
             </label>
-            <input type="number" id="totalWeight" placeholder="무게를 입력하세요" step="0.01">
+            <input type="number" id="totalWeight" placeholder="동전의 총 무게를 입력하세요" step="0.01">
         </div>
         
-        <button onclick="calculateCoins()">계산하기</button>
+        <button onclick="calculateCoins()">동전 가격 계산하기</button>
         
         <div id="result"></div>
     </div>
@@ -125,7 +133,7 @@
             const resultDiv = document.getElementById('result');
 
             if (isNaN(totalWeight) || totalWeight <= 0) {
-                resultDiv.innerHTML = '올바른 무게를 입력해주세요.';
+                resultDiv.innerHTML = '올바른 동전 무게를 입력해주세요.';
                 return;
             }
 
@@ -135,9 +143,10 @@
             const totalPrice = coinCount * coinType;
 
             let resultHTML = `
+                <h3>동전 계산 결과</h3>
                 <div class="result-item">
                     <span>동전 종류:</span>
-                    <strong>${coinType}원</strong>
+                    <strong>${coinType}원 동전</strong>
                 </div>
                 <div class="result-item">
                     <span>동전 무게:</span>
